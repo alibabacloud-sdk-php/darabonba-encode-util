@@ -73,15 +73,7 @@ class EncodeUtil
         if (empty($raw)) {
             throw new \InvalidArgumentException('not a valid value for parameter');
         }
-        $ret = '';
-        foreach ($raw as $i => $b) {
-            $str = dechex($b);
-            if(strlen($str) < 2) {
-                $str = str_pad($str, 2, '0', STR_PAD_LEFT);
-            }
-            $ret .= $str;
-        }
-        return $ret;
+        return bin2hex(pack('C*',...$raw));
     }
 
      /**
